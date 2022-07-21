@@ -1,0 +1,868 @@
+[
+    {
+        "id": "9d5ac6d1342a3fcb",
+        "type": "tab",
+        "label": "Nube",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cb251c73fa07952b",
+        "type": "mqtt in",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valores",
+        "topic": "equipouv/javierjesusluis/valor1",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "87a44c144606579c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "370efdb2266daeed",
+                "e7d8b92169c974ca",
+                "d67e1e8943021eed",
+                "a20dd778c856d07d",
+                "a1426d8cf560d499",
+                "4896283f37b81527",
+                "80c9025e571ede19"
+            ]
+        ]
+    },
+    {
+        "id": "471987dc0a918183",
+        "type": "debug",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "EquipoUV",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "93803dfac0d6857a",
+        "type": "file",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "EquipoUV",
+        "filename": "/home/pi/equipouv.csv",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 958,
+        "y": 306,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4665813c1796642",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor 1 css",
+        "func": "msg.payload=msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 40,
+        "wires": [
+            [
+                "471987dc0a918183",
+                "93803dfac0d6857a"
+            ]
+        ]
+    },
+    {
+        "id": "97c0b379c69b6e0f",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor 2 css",
+        "func": "msg.payload=\",\"+msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "471987dc0a918183",
+                "93803dfac0d6857a"
+            ]
+        ]
+    },
+    {
+        "id": "deb67a674f48fdea",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor 3 css",
+        "func": "msg.payload=\",\"+msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 220,
+        "wires": [
+            [
+                "471987dc0a918183",
+                "93803dfac0d6857a"
+            ]
+        ]
+    },
+    {
+        "id": "94016919e91139a2",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor 4 css",
+        "func": "var d=new Date();\nmsg.payload=\",\"+msg.payload+\",\"+d.getDate()+\"/\"+d.getMonth()+\"/\"+d.getFullYear()+\",\"+d.getHours()+\":\"+d.getMinutes()+\":\"+d.getSeconds()+\"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "471987dc0a918183",
+                "93803dfac0d6857a"
+            ]
+        ]
+    },
+    {
+        "id": "370efdb2266daeed",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Temperatura",
+        "func": "msg = msg.payload.split(\":\").slice(0,4).map(e => {\n    //return {payload:parseFloat(e)}\n    return {payload:parseFloat(e)*60/1023}\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 352,
+        "y": 94,
+        "wires": [
+            [
+                "e4665813c1796642",
+                "6da219a8f9efc44e"
+            ]
+        ]
+    },
+    {
+        "id": "e7d8b92169c974ca",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Voltaje",
+        "func": "msg = msg.payload.split(\":\").slice(1,4).map(e => {\n    //return {payload:parseFloat(e)}\n    return {payload:parseFloat(e)*270/526}\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "97c0b379c69b6e0f",
+                "f7e07c38c0078811"
+            ]
+        ]
+    },
+    {
+        "id": "d67e1e8943021eed",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Corriente",
+        "func": "msg = msg.payload.split(\":\").slice(2,4).map(e => {\n    //return {payload:parseFloat(e)}\n    return {payload:(parseFloat(e)*5/1023 - 2.5)/0.1}\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "deb67a674f48fdea",
+                "0ef98885fe625eb5"
+            ]
+        ]
+    },
+    {
+        "id": "a20dd778c856d07d",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Irradiancia",
+        "func": "msg = msg.payload.split(\":\").slice(3,4).map(e => {\n    //return {payload:parseFloat(e)}\n    return {payload:parseFloat(e)*1000/248}\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "94016919e91139a2",
+                "1c281ea7cd961b04",
+                "69dcaec3d4a7e80b"
+            ]
+        ]
+    },
+    {
+        "id": "6da219a8f9efc44e",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "d83626b47c41cd49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "10",
+        "ymax": "60",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 930,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7e07c38c0078811",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "528b3f3afa06f7b9",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "260",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ef98885fe625eb5",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "a3c3809789a6cd6d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-1",
+        "ymax": "10",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1c281ea7cd961b04",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "4fac3fc84147b855",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 930,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1426d8cf560d499",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Potencia",
+        "func": "//Voltaje por corriente\nvalores = msg.payload.split(\":\");\npotencia = ((parseFloat(valores[1])*260/526) * ((parseFloat(valores[2]))*5/1023 - 2.5)/0.1);\nmsg.payload = potencia;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "6d40aab7d25bc98b",
+                "fcfaff49fe908a5b"
+            ]
+        ]
+    },
+    {
+        "id": "6d40aab7d25bc98b",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "e968c93ddf512e26",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "1200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4896283f37b81527",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Costo",
+        "func": "//Costo por potencia\nvalores = msg.payload.split(\":\");\npotencia = ((parseFloat(valores[1])*260/526) * ((parseFloat(valores[2]))*5/1023 - 2.5)/0.1);\ncosto = potencia*3.35/60;\nvar costoglobal = msg.payload =  flow.get('costo') || 0;\ncosto = costo + costoglobal;\nmsg.payload = costo;\nflow.set('costo', costo);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 500,
+        "wires": [
+            [
+                "f9f0c83c0d640026",
+                "57a30c6b61334ab6"
+            ]
+        ]
+    },
+    {
+        "id": "f9f0c83c0d640026",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "518f784be35a125e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 590,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fcfaff49fe908a5b",
+        "type": "debug",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "80c9025e571ede19",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "co2",
+        "func": "valores = msg.payload.split(\":\");\npotencia = ((parseFloat(valores[1])*260/526) * ((parseFloat(valores[2]))*5/1023 - 2.5)/0.1);\nco2 = potencia*0.6/60;\nvar co2global = msg.payload =  flow.get('co2') || 0;\nco2 = co2 + co2global;\nmsg.payload = co2;\nflow.set('co2', co2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 600,
+        "wires": [
+            [
+                "0d26cfc5b5b96900",
+                "8f3d0b4af1f68938"
+            ]
+        ]
+    },
+    {
+        "id": "0d26cfc5b5b96900",
+        "type": "ui_chart",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "group": "8c0e51a9c4f30c63",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69dcaec3d4a7e80b",
+        "type": "debug",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3ccbcc55e04a23ca",
+        "type": "inject",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor a cero",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 230,
+        "y": 680,
+        "wires": [
+            [
+                "90a0c06d1b999128"
+            ]
+        ]
+    },
+    {
+        "id": "90a0c06d1b999128",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Costo global",
+        "func": "//Costo global\nflow.set('costo', 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57a30c6b61334ab6",
+        "type": "debug",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Costo",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "7c61856ca5d5d93a",
+        "type": "inject",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "Valor a cero",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 230,
+        "y": 760,
+        "wires": [
+            [
+                "3a86bfdbced47175"
+            ]
+        ]
+    },
+    {
+        "id": "3a86bfdbced47175",
+        "type": "function",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "CO2 global",
+        "func": "//CO2 global\nflow.set('co2', 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f3d0b4af1f68938",
+        "type": "debug",
+        "z": "9d5ac6d1342a3fcb",
+        "name": "CO2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "87a44c144606579c",
+        "type": "mqtt-broker",
+        "name": "broker.emqx.io",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d83626b47c41cd49",
+        "type": "ui_group",
+        "name": "Temperatura",
+        "tab": "657ef18dfc402769",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "528b3f3afa06f7b9",
+        "type": "ui_group",
+        "name": "Voltaje",
+        "tab": "657ef18dfc402769",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a3c3809789a6cd6d",
+        "type": "ui_group",
+        "name": "Corriente",
+        "tab": "657ef18dfc402769",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4fac3fc84147b855",
+        "type": "ui_group",
+        "name": "Irradianza",
+        "tab": "657ef18dfc402769",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e968c93ddf512e26",
+        "type": "ui_group",
+        "name": "Potencia",
+        "tab": "657ef18dfc402769",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "518f784be35a125e",
+        "type": "ui_group",
+        "name": "Costo",
+        "tab": "657ef18dfc402769",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8c0e51a9c4f30c63",
+        "type": "ui_group",
+        "name": "Co2",
+        "tab": "657ef18dfc402769",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "657ef18dfc402769",
+        "type": "ui_tab",
+        "name": "Valores",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,74 @@
+[
+    {
+        "id": "0f6c676ae03aee9a",
+        "type": "tab",
+        "label": "Leer IP de Raspberry Pi",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d06ead0fff30219b",
+        "type": "mqtt in",
+        "z": "0f6c676ae03aee9a",
+        "name": "IP Raspberry Pi",
+        "topic": "equipouv/javierjesusluis/valor3",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "3163981365519d59",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "4096ad4d6c104182"
+            ]
+        ]
+    },
+    {
+        "id": "4096ad4d6c104182",
+        "type": "debug",
+        "z": "0f6c676ae03aee9a",
+        "name": "IP Raspberry Pi obtenida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3163981365519d59",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto.org",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]

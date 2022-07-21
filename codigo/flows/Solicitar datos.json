@@ -1,0 +1,86 @@
+[
+    {
+        "id": "60842e7b11ebf610",
+        "type": "tab",
+        "label": "Solicitar datos",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "eed1f81d08c79c03",
+        "type": "inject",
+        "z": "60842e7b11ebf610",
+        "name": "Solicita dato",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "d",
+        "payloadType": "str",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "077a0e46d8dcb36c",
+                "5275937a647b807f"
+            ]
+        ]
+    },
+    {
+        "id": "077a0e46d8dcb36c",
+        "type": "debug",
+        "z": "60842e7b11ebf610",
+        "name": "Solicitud de datos",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "5275937a647b807f",
+        "type": "serial out",
+        "z": "60842e7b11ebf610",
+        "name": "Solicitud de datos",
+        "serial": "536daea7eb44c1e2",
+        "x": 430,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "536daea7eb44c1e2",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    }
+]

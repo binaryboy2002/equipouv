@@ -1,0 +1,112 @@
+[
+    {
+        "id": "bf4d8fdb01fd0194",
+        "type": "tab",
+        "label": "Simulacion envio semaforo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e18bd34858fb590a",
+        "type": "inject",
+        "z": "bf4d8fdb01fd0194",
+        "name": "0",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "b3174ce3c952738a"
+            ]
+        ]
+    },
+    {
+        "id": "ba6dc23d569cdf7c",
+        "type": "inject",
+        "z": "bf4d8fdb01fd0194",
+        "name": "1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "b3174ce3c952738a"
+            ]
+        ]
+    },
+    {
+        "id": "b3174ce3c952738a",
+        "type": "mqtt out",
+        "z": "bf4d8fdb01fd0194",
+        "name": "Valor semaforo",
+        "topic": "equipouv/javierjesusluis/valor2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3163981365519d59",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3163981365519d59",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto.org",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
