@@ -1,0 +1,123 @@
+[
+    {
+        "id": "d6fd37042690d16e",
+        "type": "tab",
+        "label": "Enviar",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "045b476f9a0485d3",
+        "type": "serial in",
+        "z": "d6fd37042690d16e",
+        "name": "arduinouno",
+        "serial": "536daea7eb44c1e2",
+        "x": 160,
+        "y": 800,
+        "wires": [
+            [
+                "3db3cb42cec45cc4",
+                "1aaf9b715514fcae"
+            ]
+        ]
+    },
+    {
+        "id": "3db3cb42cec45cc4",
+        "type": "mqtt out",
+        "z": "d6fd37042690d16e",
+        "name": "Valores",
+        "topic": "equipouv/javierjesusluis/valor1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3163981365519d59",
+        "x": 580,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "1aaf9b715514fcae",
+        "type": "debug",
+        "z": "d6fd37042690d16e",
+        "name": "Valores",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "faa9788668130612",
+        "type": "ui_chart",
+        "z": "d6fd37042690d16e",
+        "name": "",
+        "group": "",
+        "order": 0,
+        "interpolate": "linear",
+        "nodata": "",
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "x": 930,
+        "y": 680,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "536daea7eb44c1e2",
+        "type": "serial-port",
+        "serialport": "COM3",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "3163981365519d59",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto.org",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
